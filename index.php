@@ -5,14 +5,14 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
 // 动态获取仓库链接
-$repo = isset($_GET['repo']) ? $_GET['repo'] : 'FurryAria/img'; // 默认值为 'nasa/osal'
+$repo = isset($_GET['repo']) ? $_GET['repo'] : 'FurryAria/img'; // 默认值为 'FurryAria/img'
 $url = "https://api.github.com/repos/{$repo}/contributors";
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_USERAGENT, 'Aria-Contributors-Viewer'); // 关键修复点
+curl_setopt($ch, CURLOPT_USERAGENT, 'Aria-Contributors-Viewer'); 
 $response = curl_exec($ch);
 
 // 新增状态码检查
@@ -60,7 +60,6 @@ $background = isset($_GET['background']) ? htmlspecialchars($_GET['background'])
         body {
             padding: 2rem;
             background: var(--bg);
-            /* 新增：动态设置背景图片 */
             background-image: <?php echo !empty($background) ? "url('$background')" : "none"; ?>;
             background-size: cover;
             background-position: center;
@@ -111,18 +110,16 @@ $background = isset($_GET['background']) ? htmlspecialchars($_GET['background'])
             color: #6B7280;
         }
 
-        /* 新增：自定义超链接样式 */
         .contributor-login a {
-            color: #007bff; /* 更符合网页风格的蓝色 */
-            text-decoration: none; /* 移除下划线 */
-            transition: color 0.3s ease; /* 添加平滑过渡效果 */
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .contributor-login a:hover {
-            color: #0056b3; /* 鼠标悬停时的颜色变化 */
+            color: #0056b3;
         }
 
-        /* 新增：自定义文本样式 */
         .custom-text {
             margin-top: 2rem;
             padding: 1rem;
@@ -159,7 +156,6 @@ $background = isset($_GET['background']) ? htmlspecialchars($_GET['background'])
         <?php endforeach; ?>
     </div>
 
-    <!-- 新增：自定义文本 -->
     <?php if (!empty($customText)): ?>
         <div class="custom-text">
             <?php echo $customText; ?>
