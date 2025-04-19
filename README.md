@@ -77,6 +77,22 @@ GitHubApi/
 - cURL 扩展
 - 支持 HTTP/HTTPS 的服务器环境
 
+
+## 📜 更新日志
+
+### [1.1.0] - 2023-10-25
+- **新增功能**：
+  - ✨ 支持头像代理配置 (`avatar_proxy`)，可选模式：
+    - `y`: 使用公共镜像代理 (`https://down.npee.cn/?`)
+    - `local`: 通过本地 `avatar_proxy.php` 代理（高风险场景需谨慎）
+    - 自定义镜像：使用单引号包裹镜像地址 (如 `'https://mirror.example.com/?url='`)
+
+### [1.0.0] - 2023-10-20
+- 初始版本发布
+  - ✅ 动态获取 GitHub 仓库贡献者数据
+  - ⚙️ 支持基础参数：`login`/`html_url`/`contributions`
+  - 🎨 自定义背景图片与底部文本
+
 ## 📜 许可证
 
 [MIT License](LICENSE) © FurryAria
