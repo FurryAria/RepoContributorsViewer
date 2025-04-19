@@ -26,6 +26,14 @@ RepoContributorsViewer - 仓库贡献者查看工具（PHP）
 ```bash
 http://yourdomain.com/index.php?repo=FurryAria/RepoContributorsViewer
 ```
+### 直接在线使用
+```bash
+https://something.hellofurry.cn/RepoContributorsViewer.php?repo=用户/仓库名&login=y&html_url=y&contributions=y&text=RepoContributorsViewer%20-%20%E4%BB%93%E5%BA%93%E8%B4%A1%E7%8C%AE%E8%80%85%E6%9F%A5%E7%9C%8B%E5%B7%A5%E5%85%B7
+```
+## 示例
+```bash
+https://something.hellofurry.cn/RepoContributorsViewer.php?repo=FurryAria/RepoContributorsViewer&login=y&html_url=y&contributions=y&text=RepoContributorsViewer%20-%20%E4%BB%93%E5%BA%93%E8%B4%A1%E7%8C%AE%E8%80%85%E6%9F%A5%E7%9C%8B%E5%B7%A5%E5%85%B7
+```
 
 ### 参数说明
 | 参数 | 类型 | 说明 | 示例 |
