@@ -42,8 +42,8 @@ https://something.hellofurry.cn/RepoContributorsViewer.php?repo=FurryAria/RepoCo
 | `login` | y/n | 显示登录名 | `?login=y` |
 | `html_url` | y/n | 显示主页链接 | `?html_url=y` |
 | `contributions` | y/n | 显示贡献次数 | `?contributions=y` |
-| `text` | string | 底部自定义文本 | `?text=欢迎访问` |
-| `background` | URL | 背景图片地址 | `?background=https://example.com/bg.jpg` |
+| `text` | string | 底部自定义文本（可选） | `?text=欢迎访问` |
+| `background` | URL | 背景图片地址（可选） | `?background=https://example.com/bg.jpg` |
 
 ### 高级示例
 ```bash
