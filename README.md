@@ -56,7 +56,7 @@ http://yourdomain.com/index.php?repo=FurryAria/RepoContributorsViewer&text=RepoC
 
 ## 📂 项目结构
 ```
-GitHubApi/
+/
 ├── index.php          # 主程序
 ├── README.md         # 自述文件
 └── LICENSE           # MIT 许可证
