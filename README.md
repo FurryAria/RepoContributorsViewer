@@ -64,7 +64,7 @@ GitHubApi/
 
 ## ⚙️ 依赖要求
 
-- PHP ≥ 5.6
+- PHP ≥ 5.6（测试环境 PHP8.4.5 Windows）
 - cURL 扩展
 - 支持 HTTP/HTTPS 的服务器环境
 
