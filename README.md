@@ -1,84 +1,90 @@
-# RepoContributorsViewer
-RepoContributorsViewer - 仓库贡献者查看工具（PHP）
-
-# GitHub 仓库贡献者查看器
-
-一个基于 PHP 的网页工具，动态获取并展示 GitHub 仓库贡献者信息，支持多种自定义显示选项。
+# RepoContributorsViewer - GitHub 仓库贡献者查看工具
 
 ![GitHub](https://img.shields.io/badge/license-MIT-blue)
 
-## ✨ 功能特性
+## 📖 项目简介
 
-- **动态数据获取**：通过 GitHub API 实时获取仓库贡献者信息
-- **自定义显示选项**：
-  - 显示登录名（`login`）
+RepoContributorsViewer 是一个基于 PHP 的网页工具，用于动态获取并展示 GitHub 仓库的贡献者信息，支持多种自定义显示选项。
+
+## ✨ 核心功能
+
+- **实时数据获取**：通过 GitHub API 获取最新仓库贡献者信息
+- **灵活显示选项**：
+  - 显示贡献者登录名（`login`）
   - 显示 GitHub 主页链接（`html_url`）
-  - 显示贡献次数（`contributions`）
-- **个性化设置**：
+  - 显示贡献次数统计（`contributions`）
+- **个性化定制**：
   - 自定义背景图片
-  - 底部自定义文本
-- **跨域支持**：可轻松嵌入其他网页
-- **响应式设计**：适配不同屏幕尺寸
+  - 底部信息文本自定义
+- **响应式布局**：适配各种设备屏幕
 
-## 🚀 快速开始
+## 🚀 快速使用指南
 
-### 基础使用
+### 基础调用方式
 ```bash
-http://yourdomain.com/index.php?repo=FurryAria/RepoContributorsViewer
+https://yourdomain.com/RepoContributorsViewer.php?repo=用户名/仓库名
 ```
-### 直接在线使用
-```bash
-https://something.hellofurry.cn/RepoContributorsViewer.php?repo=用户/仓库名&login=y&html_url=y&contributions=y&text=RepoContributorsViewer%20-%20%E4%BB%93%E5%BA%93%E8%B4%A1%E7%8C%AE%E8%80%85%E6%9F%A5%E7%9C%8B%E5%B7%A5%E5%85%B7
-```
-## 示例
+
+### 在线演示示例
 ```bash
 https://something.hellofurry.cn/RepoContributorsViewer.php?repo=FurryAria/RepoContributorsViewer&login=y&html_url=y&contributions=y&text=RepoContributorsViewer%20-%20%E4%BB%93%E5%BA%93%E8%B4%A1%E7%8C%AE%E8%80%85%E6%9F%A5%E7%9C%8B%E5%B7%A5%E5%85%B7
 ```
 
-### 参数说明
-| 参数 | 类型 | 说明 | 示例 |
+### 完整参数说明
+
+| 参数 | 类型 | 说明 | 示例值 |
 |------|------|------|------|
-| `repo` | string | 仓库路径（用户/仓库名） | `?repo=FurryAria/img` |
-| `login` | y/n | 显示登录名 | `?login=y` |
-| `html_url` | y/n | 显示主页链接 | `?html_url=y` |
-| `contributions` | y/n | 显示贡献次数 | `?contributions=y` |
-| `text` | string | 底部自定义文本（可选） | `?text=欢迎访问` |
-| `background` | URL | 背景图片地址（可选） | `?background=https://example.com/bg.jpg` |
+| `repo` | 必填 | 仓库路径（格式：用户名/仓库名） | `FurryAria/img` |
+| `login` | 可选 | 是否显示登录名（y/n） | `y` |
+| `html_url` | 可选 | 是否显示主页链接（y/n） | `y` |
+| `contributions` | 可选 | 是否显示贡献次数（y/n） | `y` |
+| `text` | 可选 | 底部自定义文本（URL编码） | `欢迎使用` |
+| `background` | 可选 | 背景图片URL地址 | `https://example.com/bg.jpg` |
 
-### 高级示例
+### 典型使用场景
+
+1. **基本贡献者查看**：
 ```bash
-# 显示登录名和贡献次数
-http://yourdomain.com/index.php?repo=FurryAria/RepoContributorsViewer&login=y&contributions=y
+https://yourdomain.com/RepoContributorsViewer.php?repo=用户/仓库名
+```
 
-# 自定义背景和文本
-http://yourdomain.com/index.php?repo=FurryAria/RepoContributorsViewer&text=RepoContributorsViewer - 仓库贡献者查看工具&background=https://example.com/space.jpg
+2. **显示详细贡献信息**：
+```bash
+https://yourdomain.com/RepoContributorsViewer.php?repo=用户/仓库名&login=y&contributions=y
+```
+
+3. **完全自定义展示**：
+```bash
+https://yourdomain.com/RepoContributorsViewer.php?repo=用户/仓库名&login=y&html_url=y&contributions=y&text=自定义文本&background=https://example.com/bg.jpg
+```
+
+### 嵌入到其他网页
+
+使用 `<iframe>` 标签即可嵌入：
+```html
+<iframe src="https://yourdomain.com/RepoContributorsViewer.php?repo=用户/仓库名" width="100%" height="500px"></iframe>
 ```
 
 ## 📂 项目结构
+
 ```
 /
-├── index.php          # 主程序
-├── README.md         # 自述文件
-└── LICENSE           # MIT 许可证
+├── RepoContributorsViewer.php    # 主程序文件
+├── README.md                    # 项目文档
+└── LICENSE                      # MIT 许可证文件
 ```
 
-## ⚙️ 依赖要求
+## ⚙️ 运行环境要求
 
-- PHP ≥ 5.6（测试环境 PHP8.4.5 Windows）
+- PHP ≥ 5.6（推荐 PHP 7.4+）
 - cURL 扩展
-- 支持 HTTP/HTTPS 的服务器环境
+- 支持 HTTPS 的服务器环境
 
-## 📜 许可证
+## 📜 许可证协议
 
-[MIT License](LICENSE) © FurryAria
+本项目采用 [MIT 许可证](LICENSE) © FurryAria
 
+## 📊 项目访问量统计
 
-## 其他
+![访问统计](https://w.saobby.com/w/nivjzdhq
 
-**FurryAria**  
-[![GitHub](https://img.shields.io/badge/GitHub-Profile-blue)](https://github.com/FurryAria)
-
-
-**仓库查看次数**
-
-![](https://w.saobby.com/w/nivjzdhq)
