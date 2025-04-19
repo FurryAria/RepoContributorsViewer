@@ -89,4 +89,6 @@ GitHubApi/
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue)](https://github.com/FurryAria)
 
 **仓库查看次数**
-[![]](https://w.saobby.com/w/nivjzdhq)
+
+
+[!](https://w.saobby.com/w/nivjzdhq)
