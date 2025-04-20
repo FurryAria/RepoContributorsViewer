@@ -5,7 +5,16 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
 // 动态获取仓库链接
-$repo = isset($_GET['repo']) ? $_GET['repo'] : 'FurryAria/img'; // 默认值为 'FurryAria/img'
+function getSanitizedInput($input, $default = '') {
+    if (PHP_VERSION_ID >= 80100) {
+        return filter_input(INPUT_GET, $input, FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? $default;
+    } else {
+        return filter_input(INPUT_GET, $input, FILTER_SANITIZE_STRING) ?? $default;
+    }
+}
+
+// 使用封装函数
+$repo = getSanitizedInput('repo', 'FurryAria/img');
 $url = "https://api.github.com/repos/{$repo}/contributors";
 
 $ch = curl_init();
@@ -24,31 +33,52 @@ if ($httpCode !== 200) {
 curl_close($ch);
 
 // 增强的错误处理
-if ($response === false) {
-    die('无法获取数据：' . curl_error($ch));
-}
+try {
+    if ($response === false) {
+        throw new Exception('无法获取数据：' . curl_error($ch));
+    }
 
-$contributors = json_decode($response, true);
-if (json_last_error() !== JSON_ERROR_NONE) {
-    die('JSON解析错误: ' . json_last_error_msg());
-}
-if (empty($contributors)) {
-    die('贡献者列表为空');
+    if (empty($response)) {
+        throw new Exception('响应数据为空');
+    }
+
+    $contributors = json_decode($response, true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        throw new Exception('JSON解析错误: ' . json_last_error_msg());
+    }
+    if (empty($contributors)) {
+        throw new Exception('贡献者列表为空');
+    }
+
+    // 关闭 cURL 句柄
+    curl_close($ch);
+} catch (Exception $e) {
+    // 处理异常，记录日志或返回错误信息
+    error_log($e->getMessage());
+    // 可以根据需要返回错误信息或进行其他处理
+    die('发生错误，请稍后重试');
 }
 
 // 新增：解析 URL 参数
-$parseLogin = isset($_GET['login']) && $_GET['login'] === 'y';
-$parseHtmlUrl = isset($_GET['html_url']) && $_GET['html_url'] === 'y';
-$parseContributions = isset($_GET['contributions']) && $_GET['contributions'] === 'y';
+$parse_login = filter_input(INPUT_GET, 'login', FILTER_SANITIZE_FULL_SPECIAL_CHARS) === 'y';
+$parse_html_url = filter_input(INPUT_GET, 'html_url', FILTER_SANITIZE_FULL_SPECIAL_CHARS) === 'y';
+$parse_contributions = filter_input(INPUT_GET, 'contributions', FILTER_SANITIZE_FULL_SPECIAL_CHARS) === 'y';
 
 // 新增：获取自定义文本参数
-$customText = isset($_GET['text']) ? htmlspecialchars($_GET['text']) : '';
+$custom_text = filter_input(INPUT_GET, 'text', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '';
 
 // 新增：获取背景图片参数
-$background = isset($_GET['background']) ? htmlspecialchars($_GET['background']) : '';
+$background = filter_input(INPUT_GET, 'background', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '';
 
-// 修改：强制使用原始头像链接
-$avatarPrefix = '';
+// 新增：解析 avatar_proxy 参数
+$avatar_proxy = filter_input(INPUT_GET, 'avatar_proxy', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '';
+
+// 新增：处理 avatar_proxy 参数逻辑
+function getAvatarPrefix($avatar_proxy) {
+    return ''; // 关闭镜像功能，始终返回空字符串
+}
+
+$avatar_prefix = getAvatarPrefix($avatar_proxy);
 
 ?>
 
@@ -57,7 +87,7 @@ $avatarPrefix = '';
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-widdth, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>仓库贡献者</title>
     <link rel="stylesheet" href="css/index.css"><!-- 注：由于是直接用的个人主页的css，所以可能会有大量无用样式，但是懒得改了qwq -->
     <style>
@@ -141,28 +171,28 @@ $avatarPrefix = '';
     <div class="contributors-grid">
         <?php foreach ($contributors as $contributor): ?>
             <div class="contributor-card">
-                <img class="contributor-avatar" src="<?php echo $avatarPrefix . htmlspecialchars($contributor['avatar_url']); ?>"
+                <img class="contributor-avatar" src="<?php echo $avatar_prefix . htmlspecialchars($contributor['avatar_url']); ?>"
                     alt="<?php echo htmlspecialchars($contributor['login']); ?>'s avatar">
-                <?php if ($parseLogin): ?>
+                <?php if ($parse_login): ?>
                     <div class="contributor-name"><?php echo htmlspecialchars($contributor['login']); ?></div>
                 <?php endif; ?>
-                <?php if ($parseHtmlUrl): ?>
+                <?php if ($parse_html_url): ?>
                     <div class="contributor-login">
                         <a href="<?php echo htmlspecialchars($contributor['html_url']); ?>" target="_blank">
                             @<?php echo htmlspecialchars($contributor['login']); ?>
                         </a>
                     </div>
                 <?php endif; ?>
-                <?php if ($parseContributions): ?>
+                <?php if ($parse_contributions): ?>
                     <div class="contributor-contributions">贡献: <?php echo $contributor['contributions']; ?></div>
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>
     </div>
 
-    <?php if (!empty($customText)): ?>
+    <?php if (!empty($custom_text)): ?>
         <div class="custom-text">
-            <?php echo $customText; ?>
+            <?php echo $custom_text; ?>
         </div>
     <?php endif; ?>
 
