@@ -64,9 +64,9 @@ http://yourdomain.com/index.php?repo=FurryAria/RepoContributorsViewer&avatar_pro
 ## 📂 项目结构
 ```
 GitHubApi/
-├── index.php          # 主程序
+├── RepoContributorsViewer.php          # 主程序
 ├── avatar_proxy.php   # 本地头像代理脚本
-├── index_local.php    # 无任何代理的网页，强制用户本地加载GitHub头像
+├── RepoContributorsViewer_local.php    # 无任何代理的网页，强制用户本地加载GitHub头像
 ├── README.md          # 自述文件
 └── LICENSE            # MIT 许可证
 ```
