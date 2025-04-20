@@ -1,0 +1,575 @@
+:root {
+    --primary: #6B7280;
+    --accent-blue: #7DD3FC;
+    --accent-yellow: #FDE68A;
+    --accent-pink: #FBCFE8;
+    --bg: #f8fafc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: '思源柔黑体', 'Source Sans Pro', sans-serif;
+    background: var(--bg);
+    color: #334155;
+    line-height: 1.6;
+}
+
+/* 修复的导航栏 */
+.navbar {
+    background: rgba(255,255,255,0.98);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--primary);
+    text-decoration: none;
+    position: relative;
+    padding: 0.3rem 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-blue);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* 主要内容区域 */
+.section {
+    padding: 4rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* 个人简介 */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-blue);
+    padding: 5px;
+}
+
+/* 技能卡片 */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* 时间轴 */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: #cbd5e1;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+}
+
+.timeline-item::before {
+    content: '🐾';
+    position: absolute;
+    left: -16px;
+    top: 0;
+    font-size: 1.2rem;
+}
+
+/* 友情链接 */
+.friend-links {
+    background: linear-gradient(15deg, #f8fafc, #f1f5f9);
+    padding: 4rem 0;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.link-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.link-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(125,211,252,0.15);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .links-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .timeline {
+        padding-left: 1rem;
+    }
+
+    .timeline-item {
+        padding-left: 1rem;
+    }
+
+    .timeline-item::before {
+        left: -12px;
+        font-size: 1rem;
+    }
+
+    .section {
+        padding: 2rem 0;
+    }
+
+    .friend-links {
+        padding: 2rem 0;
+    }
+
+    .link-card {
+        padding: 1rem;
+    }
+
+    .card {
+        padding: 1rem;
+    }
+
+    .avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+/* 导航栏优化 */
+.nav-links a {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-yellow);
+    transform: scale(1.05);
+}
+
+/* 卡片样式优化 */
+.card, .link-card {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.card:hover, .link-card:hover {
+    box-shadow: 0 8px 20px rgba(125,211,252,0.2);
+}
+
+/* 时间轴样式优化 */
+.timeline::before {
+    width: 3px;
+    background: linear-gradient(transparent, var(--accent-blue), transparent);
+}
+
+.timeline-item::before {
+    font-size: 1.5rem;
+    color: var(--accent-pink);
+}
+
+/* 页脚优化 */
+footer {
+    background: linear-gradient(15deg, var(--accent-blue), var(--accent-pink));
+}
+
+footer p {
+    color: #fff;
+    opacity: 0.9;
+}
+
+/* 返回顶部按钮样式 */
+#back-to-top {
+    transition: background 0.3s, opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+    background: var(--accent-yellow);
+    transform: scale(1.1);
+}
+
+/* 新增：按钮显示/隐藏动画 */
+#back-to-top.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#back-to-top.fade-in {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 确保所有元素不会超出视口宽度 */
+html, body {
+    overflow-x: hidden; /* 防止水平滚动 */
+    width: 100%; /* 确保宽度为100% */
+    max-width: 100%; /* 最大宽度为100% */
+}
+
+/* 修复容器宽度 */
+.container {
+    max-width: 100%; /* 确保容器宽度不超过视口 */
+    padding: 0 1rem; /* 调整内边距 */
+}
+
+/* 修复图片宽度 */
+img {
+    max-width: 100%; /* 确保图片不会超出容器 */
+    height: auto; /* 保持图片比例 */
+}
+
+/* 修复导航栏宽度 */
+.navbar {
+    width: 100%; /* 确保导航栏宽度为100% */
+    max-width: 100%; /* 最大宽度为100% */
+}
+
+/* 修复卡片网格宽度 */
+.card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 调整卡片网格布局 */
+    gap: 1rem; /* 调整间距 */
+}
+
+/* 修复时间轴宽度 */
+.timeline {
+    width: 100%; /* 确保时间轴宽度为100% */
+    max-width: 100%; /* 最大宽度为100% */
+}
+
+/* 修复友情链接宽度 */
+.links-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 调整友情链接布局 */
+    gap: 1rem; /* 调整间距 */
+}
+
+/* 修复页脚宽度 */
+footer {
+    width: 100%; /* 确保页脚宽度为100% */
+    max-width: 100%; /* 最大宽度为100% */
+}
+
+/* 新增：页面加载时的淡入动画 */
+body {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 新增：卡片悬浮时的3D效果 */
+.card, .link-card {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.card:hover, .link-card:hover {
+    /* 降低放大倍数 */
+    transform: scale(1.03);
+    /* 降低阴影强度 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+/* 新增：导航栏链接的波浪动画 */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-blue);
+    transition: width 0.3s, transform 0.3s;
+    transform-origin: left;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    transform: scaleX(1.2);
+}
+
+/* 新增：时间轴项目的入场动画 */
+.timeline-item {
+    opacity: 0;
+    transform: translateX(-10px); /* 减小偏移量 */
+    animation: slideIn 0.6s ease-out forwards;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 新增：页脚的渐变背景动画 */
+footer {
+    background: linear-gradient(45deg, var(--accent-blue), var(--accent-pink));
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 新增：返回顶部按钮的弹跳动画 */
+#back-to-top {
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 优化导航栏 */
+.navbar {
+    padding: 1.5rem 0;
+}
+
+.nav-links {
+    gap: 3rem;
+}
+
+.nav-links a {
+    font-size: 1.1rem;
+}
+
+/* 优化个人简介 */
+.profile-header {
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.avatar {
+    width: 180px;
+    height: 180px;
+}
+
+/* 优化技能卡片 */
+.card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.card {
+    padding: 2rem;
+}
+
+/* 优化时间轴 */
+.timeline {
+    padding-left: 3rem;
+}
+
+.timeline-item {
+    padding-left: 3rem;
+}
+
+.timeline-item::before {
+    left: -20px;
+    font-size: 1.5rem;
+}
+
+/* 优化友情链接 */
+.links-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+}
+
+.link-card {
+    padding: 2rem;
+}
+
+/* 优化页脚 */
+footer {
+    padding: 4rem 0;
+}
+
+/* 优化返回顶部按钮 */
+#back-to-top {
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+/* 新增：大屏幕下的响应式设计 */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .profile-header {
+        gap: 5rem;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    .links-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+/* 优化按钮样式 */
+.navbar .container a {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem; /* 增加内边距 */
+    border: 2px solid var(--accent-blue); /* 添加边框 */
+    border-radius: 6px; /* 圆角 */
+    transition: color 0.3s, transform 0.3s, background 0.3s;
+}
+
+.navbar .container a:hover {
+    color: var(--accent-yellow);
+    transform: scale(1.05);
+    background: rgba(125, 211, 252, 0.1); /* 添加背景色 */
+}
+
+/* 新增：返回首页按钮样式 */
+#back-to-home {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: var(--accent-blue);
+    color: #fff;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: block;
+    transition: background 0.3s, transform 0.3s;
+}
+
+#back-to-home:hover {
+    background: var(--accent-yellow);
+    transform: scale(1.1);
+}
