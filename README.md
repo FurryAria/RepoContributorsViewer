@@ -108,3 +108,12 @@ GitHubApi/
 
 
 ![](https://w.saobby.com/w/nivjzdhq)
+
+
+## ⚠️ 加速服务说明
+
+本项目使用 [down.npee.cn](https://down.npee.cn) 提供的公益加速服务优化头像加载速度，使用时请注意：
+
+**服务限制**：
+   - 该加速服务为**非盈利性公益项目**
+   - 仅建议个人项目/小型项目使用
